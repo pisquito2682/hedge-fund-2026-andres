@@ -30,6 +30,9 @@ def send_telegram(message):
 
 @app.get("/")
 def home():
+
+    send_telegram("✅ Telegram conectado correctamente")
+
     return {"status": "ok"}
 
 
