@@ -5,6 +5,8 @@ import os
 app = FastAPI()
 
 API_KEY = os.getenv("ODDS_API_KEY")
+BOT_TOKEN = os.getenv("BOT_TOKEN")
+CHAT_ID = os.getenv("CHAT_ID")
 
 SPORTS = [
     "soccer_epl",
@@ -14,6 +16,16 @@ SPORTS = [
 
 def calculate_arb(best_odds):
     return (1 - sum(1/x for x in best_odds.values())) * 100
+
+
+def send_telegram(message):
+
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+
+    requests.post(url, json={
+        "chat_id": CHAT_ID,
+        "text": message
+    })
 
 
 @app.get("/")
@@ -68,14 +80,26 @@ def run():
 
             if profit > 0:
 
-                opportunities.append({
+                arb = {
                     "sport": sport,
                     "match": f"{match['home_team']} vs {match['away_team']}",
                     "profit": round(profit, 2),
                     "odds": best
-                })
+                }
+
+                opportunities.append(arb)
+
+                message = (
+                    f"🚨 ARBITRAJE DETECTADO 🚨\n\n"
+                    f"🏆 {arb['sport']}\n"
+                    f"⚽ {arb['match']}\n"
+                    f"💰 Profit: {arb['profit']}%\n\n"
+                    f"{arb['odds']}"
+                )
+
+                send_telegram(message)
 
     return {
         "count": len(opportunities),
         "opportunities": opportunities
-                        }
+    }
