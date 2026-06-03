@@ -33,7 +33,9 @@ def home():
 
     send_telegram("✅ Telegram conectado correctamente")
 
-    return {"status": "ok"}
+    send_telegram("🔥 BOT FUNCIONANDO CORRECTAMENTE")
+
+return {"status": "ok"}
 
 
 @app.get("/run")
