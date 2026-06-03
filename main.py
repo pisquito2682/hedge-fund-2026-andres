@@ -31,11 +31,14 @@ def send_telegram(message):
 @app.get("/")
 def home():
 
-    send_telegram("✅ Telegram conectado correctamente")
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
-    send_telegram("🔥 BOT FUNCIONANDO CORRECTAMENTE")
+    requests.post(url, json={
+        "chat_id": CHAT_ID,
+        "text": "🔥 BOT FUNCIONANDO CORRECTAMENTE"
+    })
 
-return {"status": "ok"}
+    return {"status": "ok"}
 
 
 @app.get("/run")
