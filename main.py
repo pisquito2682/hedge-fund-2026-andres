@@ -16,7 +16,7 @@ SPORTS = [
     "tennis_atp",
     "tennis_wta"
 ]
-
+sent_arbs = set()
 
 def send_telegram(message):
 
