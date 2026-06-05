@@ -30,7 +30,9 @@ def send_telegram(message):
 
 @app.get("/")
 def home():
+    send_telegram("🔥 BOT FUNCIONANDO CORRECTAMENTE")
 
+    return {"status": "ok"}
     
 
 
