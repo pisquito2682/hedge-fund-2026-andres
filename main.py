@@ -40,6 +40,15 @@ def home():
 
     return {"status": "ok"}
 
+    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+
+    requests.post(url, json={
+        "chat_id": CHAT_ID,
+        "text": "🔥 BOT FUNCIONANDO CORRECTAMENTE"
+    })
+
+    return {"status": "ok"}
+
 
 @app.get("/run")
 def run():
