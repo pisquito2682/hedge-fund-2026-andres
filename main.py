@@ -53,12 +53,12 @@ def run():
         response = requests.get(
             url,
             params={
-                "apiKey": API_KEY,
-                "regions": "eu",
-                "markets": "h2h,spreads,totals"
-                "oddsFormat": "decimal"
+    "apiKey": API_KEY,
+    "regions": "eu",
+    "markets": "h2h,spreads,totals",
+    "oddsFormat": "decimal"
             }
-        )
+        
 
         if response.status_code != 200:
             continue
