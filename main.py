@@ -55,7 +55,7 @@ def run():
             params={
                 "apiKey": API_KEY,
                 "regions": "eu",
-                "markets": "h2h",
+                "markets": "h2h,spreads,totals"
                 "oddsFormat": "decimal"
             }
         )
