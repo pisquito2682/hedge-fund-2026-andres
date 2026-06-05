@@ -51,13 +51,14 @@ def run():
         url = f"https://api.the-odds-api.com/v4/sports/{sport}/odds"
 
         response = requests.get(
-            url,
-            params={
-    "apiKey": API_KEY,
-    "regions": "eu",
-    "markets": "h2h,spreads,totals",
-    "oddsFormat": "decimal"
-            }
+    url,
+    params={
+        "apiKey": API_KEY,
+        "regions": "eu",
+        "markets": "h2h,spreads,totals",
+        "oddsFormat": "decimal"
+    }
+        )
         
 
         if response.status_code != 200:
