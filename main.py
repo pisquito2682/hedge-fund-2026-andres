@@ -88,7 +88,8 @@ def run():
             profit = calculate_arb(best)
 
             if profit > 0:
-arb_id = f"{sport}-{match['home_team']}-{match['away_team']}"
+
+                arb_id = f"{sport}-{match['home_team']}-{match['away_team']}"
 
                 if arb_id in sent_arbs:
                     continue
