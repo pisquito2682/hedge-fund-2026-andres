@@ -1,21 +1,11 @@
 from fastapi import FastAPI
 import requests
-import os
 
 app = FastAPI()
-
-BOT_TOKEN = os.getenv("BOT_TOKEN")
-CHAT_ID = os.getenv("CHAT_ID")
-
 
 @app.get("/")
 def home():
 
-    url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
+    requests.get("https://api.telegram.org/botTU_TOKEN/sendMessage?chat_id=TU_CHAT_ID&text=🔥FUNCIONA")
 
-    requests.post(url, json={
-        "chat_id": CHAT_ID,
-        "text": "🔥 BOT FUNCIONANDO CORRECTAMENTE"
-    })
-
-    return {"status": "ok"}
+    return {"status":"ok"}
