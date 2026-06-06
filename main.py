@@ -73,6 +73,7 @@ def run():
         for match in matches:
 
             best = {}
+            best_bookmakers = {}
 
             for bookmaker in match.get("bookmakers", []):
 
