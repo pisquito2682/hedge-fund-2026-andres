@@ -84,11 +84,9 @@ def run():
                         name = outcome["name"]
                         price = float(outcome["price"])
 
-                        if name not in best or price > 
-                        best[name]:
-                            best[name] = price
-                            best_bookmakers[name] = 
-                        bookmaker["title"]
+                        if name not in best or price > best[name]:
+    best[name] = price
+    best_bookmakers[name] = bookmaker["title"]
 
             if len(best) < 2:
                 continue
