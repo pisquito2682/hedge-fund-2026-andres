@@ -20,16 +20,18 @@ SPORTS = [
     "tennis_atp",
     "tennis_wta"
 ]
-sent_arbs = set()
 
 def send_telegram(message):
 
     url = f"https://api.telegram.org/bot{BOT_TOKEN}/sendMessage"
 
-    requests.post(url, json={
-        "chat_id": CHAT_ID,
-        "text": message
-    })
+    requests.post(
+        url,
+        json={
+            "chat_id": CHAT_ID,
+            "text": message
+        }
+    )
 
 
 def calculate_arb(best_odds):
@@ -42,7 +44,7 @@ def home():
 
     send_telegram("🔥 BOT DE ARBITRAJE ACTIVO")
 
-    return {"status":"ok"}
+    return {"status": "ok"}
 
 
 @app.get("/run")
@@ -55,15 +57,14 @@ def run():
         url = f"https://api.the-odds-api.com/v4/sports/{sport}/odds"
 
         response = requests.get(
-    url,
-    params={
-        "apiKey": API_KEY,
-        "regions": "eu",
-        "markets": "h2h,spreads,totals",
-        "oddsFormat": "decimal"
-    }
+            url,
+            params={
+                "apiKey": API_KEY,
+                "regions": "eu",
+                "markets": "h2h,spreads,totals",
+                "oddsFormat": "decimal"
+            }
         )
-        
 
         if response.status_code != 200:
             continue
@@ -85,8 +86,8 @@ def run():
                         price = float(outcome["price"])
 
                         if name not in best or price > best[name]:
-    best[name] = price
-    best_bookmakers[name] = bookmaker["title"]
+                            best[name] = price
+                            best_bookmakers[name] = bookmaker["title"]
 
             if len(best) < 2:
                 continue
@@ -99,8 +100,9 @@ def run():
                     f"🚨 ARBITRAJE DETECTADO 🚨\n\n"
                     f"🏆 {sport}\n"
                     f"⚽ {match['home_team']} vs {match['away_team']}\n"
-                    f"💰 Ganancia: {round(profit,2)}%\n\n"
-                    f"{best}"
+                    f"💰 Ganancia: {round(profit, 2)}%\n\n"
+                    f"Cuotas:\n{best}\n\n"
+                    f"Casas:\n{best_bookmakers}"
                 )
 
                 send_telegram(message)
@@ -109,4 +111,4 @@ def run():
 
     return {
         "count": len(opportunities)
-                }
+}
