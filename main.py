@@ -12,6 +12,10 @@ CHAT_ID = "7940837782"
 
 SPORTS = [
     "soccer_epl",
+    "soccer_spain_la_liga",
+    "soccer_italy_serie_a",
+    "soccer_germany_bundesliga",
+    "soccer_france_ligue_one",
     "basketball_nba",
     "tennis_atp",
     "tennis_wta"
