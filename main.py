@@ -94,7 +94,7 @@ def run():
 
             profit = calculate_arb(best)
 
-            if profit > 0:
+            if profit > -1:
 
                 message = (
                     f"🚨 ARBITRAJE DETECTADO 🚨\n\n"
